@@ -1,6 +1,7 @@
 package com.example.AgroShop.controller;
 
 
+import com.example.AgroShop.model.ImagenProducto;
 import com.example.AgroShop.model.Productos;
 import com.example.AgroShop.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,14 @@ public class ProductoController {
         return productoService.obtenerPorId(id);
     }
 
-    @PostMapping
+
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<String> guardarProducto(@RequestBody Productos producto){
+        if (producto.getImagenesProducto() != null) {
+            for (ImagenProducto imagen : producto.getImagenesProducto()) {
+                imagen.setProductos(producto); // Aquí se establece la relación de el producto a cada imagen, El producto en este punto no tiene id, pero Hibernate se encargará de asignarlo y de usarlo para las imágenes por el cascade
+            }
+        }
         productoService.guardarProducto(producto);
         return ResponseEntity.ok("Producto agregado con éxito");
     }

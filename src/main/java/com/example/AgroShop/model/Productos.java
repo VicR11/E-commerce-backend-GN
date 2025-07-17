@@ -7,11 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
+/*@Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor*/
 @Entity
 public class Productos {
     @Id
@@ -27,79 +28,83 @@ public class Productos {
     private String descripcion;
     @Column(nullable = false)
     private Integer cantidad;
-    @Column(nullable = false, length = 100)
-    private String imagen;
+    /*@Column(nullable = false, length = 254)
+    private String imagen;*/
 
     @OneToMany(mappedBy = "productos", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference("producto-productoPedido")
     private List<Producto_pedido> producto_pedido;
 
-//    public Productos() {
-//    }
-//
-//    public Productos(String nombre, double precio, String descripcion, Integer cantidad, String imagen, List<Producto_pedido> producto_pedido) {
-//        this.nombre = nombre;
-//        this.precio = precio;
-//        this.descripcion = descripcion;
-//        this.cantidad = cantidad;
-//        this.imagen = imagen;
-//        this.producto_pedido = producto_pedido;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public String getNombre() {
-//        return nombre;
-//    }
-//
-//    public void setNombre(String nombre) {
-//        this.nombre = nombre;
-//    }
-//
-//    @Min(value = 0, message = "El precio no puede ser negativo")
-//    public double getPrecio() {
-//        return precio;
-//    }
+    @OneToMany(mappedBy = "productos", cascade = CascadeType.ALL)
+    @JsonManagedReference("imagen-producto")
+    private List<ImagenProducto> ImagenesProducto;
 
-//    public void setPrecio(@Min(value = 0, message = "El precio no puede ser negativo") double precio) {
-//        this.precio = precio;
-//    }
-//
-//    public String getDescripcion() {
-//        return descripcion;
-//    }
-//
-//    public void setDescripcion(String descripcion) {
-//        this.descripcion = descripcion;
-//    }
-//
-//    public Integer getCantidad() {
-//        return cantidad;
-//    }
-//
-//    public void setCantidad(Integer cantidad) {
-//        this.cantidad = cantidad;
-//    }
-//
-//    public String getImagen() {
-//        return imagen;
-//    }
-//
-//    public void setImagen(String imagen) {
-//        this.imagen = imagen;
-//    }
-//
-//    public List<Producto_pedido> getProducto_pedido() {
-//        return producto_pedido;
-//    }
-//
-//    public void setProducto_pedido(List<Producto_pedido> producto_pedido) {
-//        this.producto_pedido = producto_pedido;
-//    }
+    public Productos() {
+    }
+
+    public Productos(String nombre, double precio, String descripcion, Integer cantidad, List<Producto_pedido> producto_pedido, List<ImagenProducto> imagenesProducto) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.producto_pedido = producto_pedido;
+        this.ImagenesProducto = imagenesProducto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Min(value = 0, message = "El precio no puede ser negativo")
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(@Min(value = 0, message = "El precio no puede ser negativo") double precio) {
+        this.precio = precio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public List<Producto_pedido> getProducto_pedido() {
+        return producto_pedido;
+    }
+
+    public void setProducto_pedido(List<Producto_pedido> producto_pedido) {
+        this.producto_pedido = producto_pedido;
+    }
+
+    public List<ImagenProducto> getImagenesProducto() {
+        return ImagenesProducto;
+    }
+
+    public void setImagenesProducto(List<ImagenProducto> imagenesProducto) {
+        ImagenesProducto = imagenesProducto;
+    }
 }
