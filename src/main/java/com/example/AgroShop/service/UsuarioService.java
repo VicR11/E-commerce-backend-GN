@@ -75,11 +75,15 @@ public class UsuarioService implements iUsuarioService{
         return usuarioRepository.findByCorreo(correo);
     }
 
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario user = usuarioRepository.findByCorreo(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("Usuario no encontrado");
-        }
-        return new org.springframework.security.core.userdetails.User(user.getCorreo(), user.getContraseña(), new ArrayList<>());
+
+            Usuario user = usuarioRepository.findByCorreo(username);
+            if (user == null) {
+                throw new UsernameNotFoundException("Usuario no encontrado");
+            }
+            return new org.springframework.security.core.userdetails.User(user.getCorreo(), user.getContraseña(), new ArrayList<>());
+
+
     }
 }

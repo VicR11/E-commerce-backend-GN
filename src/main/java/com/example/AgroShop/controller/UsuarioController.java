@@ -29,7 +29,7 @@ public class UsuarioController {
         return usuarioService.obtenerUsuario(id);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<String> guardarUsuario(@RequestBody Usuario usuario){
         usuarioService.guardarUsuario(usuario);
         return ResponseEntity.ok("Registro realizado con éxito!");

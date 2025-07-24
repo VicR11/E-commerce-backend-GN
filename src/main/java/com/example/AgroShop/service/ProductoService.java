@@ -54,6 +54,11 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
+    public List<Productos> obtenerPorNombres(String nombre) {
+        return productosRepository.findByNombreContainingIgnoreCase(nombre);
+    }
+
+    @Override
     public Productos obtenerPorNombre(String nombre) {
         return productosRepository.findByNombre(nombre);
     }

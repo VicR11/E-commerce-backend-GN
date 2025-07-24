@@ -10,5 +10,6 @@ public interface IProductoService {
     void guardarProducto(Productos producto);
     void actualizarProducto(Long id, Productos producto);
     void borrarProducto(Long id);
+    List<Productos> obtenerPorNombres(String nombre);
     Productos obtenerPorNombre(String nombre);
 }

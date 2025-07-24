@@ -56,6 +56,11 @@ public class ProductoController {
         return ResponseEntity.ok("Producto borrado con exito");
     }
 
+    @GetMapping("/nombres/{nombre}")
+    public List<Productos> obtenerProductoPorNombres(@PathVariable String nombre){
+        return productoService.obtenerPorNombres(nombre);
+    }
+
     @GetMapping("/nombre/{nombre}")
     public Productos obtenerProductoPorNombre(@PathVariable String nombre){
         return productoService.obtenerPorNombre(nombre);
